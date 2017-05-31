@@ -1,0 +1,151 @@
+// SCSS STYLES //
+
+$white: #fff !default;
+
+
+$info: #5bc0de !default;
+$success: #5cb85c !default;
+$danger: #d9534f !default;
+$warning: #f0ad4e !default;
+$border-color: #d9d9d9 !default;
+
+.funkyradio {
+  font-size: .9rem;
+  font-weight: 200;
+
+  div {
+    clear: both;
+    overflow: hidden;
+  }
+
+  label {
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    font-weight: normal;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    &:empty {
+      display: none;
+
+      ~ label {
+        color: $gray-light;
+        cursor: pointer;
+        line-height: 2.7em;
+        position: relative;
+        text-indent: 3.25em;
+        user-select: none;
+
+        &:before {
+          background: $white;
+          border-radius: 3px 0 0 3px;
+          border-right: 1px solid $border-color;
+          bottom: 0;
+          color: $gray-light;
+          content: '\f096'; //2610
+          display: block;
+          font-family: FontAwesome;
+          left: 0;
+          position: absolute;
+          text-indent: .9em;
+          top: 0;
+          width: 2.5em;
+        }
+
+        &:hover:not(:checked) {
+          background-color: $white;
+        }
+      }
+    }
+
+    &:hover:not(:checked) ~ label {
+      color: $gray-light;
+
+      &:before {
+        color: $gray-light;
+        content: '\f14a'; //2714
+        font-family: FontAwesome;
+        text-indent: .9em;
+      }
+    }
+
+    &:checked ~ label {
+      color: $gray-base;
+
+      &:before {
+        color: $gray-darker;
+        content: '\f14a';
+        font-family: FontAwesome;
+        text-indent: .9em;
+        background-color: $gray;
+      }
+    }
+
+    &:focus ~ label:before {
+      box-shadow: 0 0 0 3px $gray-darker;
+    }
+  }
+
+  &-default {
+    input[type="checkbox"],
+    input[type="radio"] {
+      &:checked ~ label:before {
+        background-color: $gray;
+        color: $gray-darker;
+      }
+    }
+  }
+
+  &-primary {
+    input[type="checkbox"],
+    input[type="radio"] {
+      &:checked ~ label:before {
+        background-color: $theme-primary;
+        color: $white;
+      }
+    }
+  }
+
+  &-success {
+    input[type="checkbox"],
+    input[type="radio"] {
+      &:checked ~ label:before {
+        background-color: $success;
+        color: $white;
+      }
+    }
+  }
+
+  &-danger {
+    input[type="checkbox"],
+    input[type="radio"] {
+      &:checked ~ label:before {
+        background-color: $danger;
+        color: $white;
+      }
+    }
+  }
+
+  &-warning {
+    input[type="checkbox"],
+    input[type="radio"] {
+      &:checked ~ label:before {
+        background-color: $warning;
+        color: $white;
+      }
+    }
+  }
+
+  &-info {
+    input[type="checkbox"],
+    input[type="radio"] {
+      &:checked ~ label:before {
+        background-color: $info;
+        color: $white;
+      }
+    }
+  }
+}

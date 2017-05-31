@@ -1,0 +1,76 @@
+// Bootstrap overrides for this template
+.text-primary {
+    color: $theme-primary !important;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.btn-default {
+    @include button-variant($gray-darker, white, white);
+}
+
+.btn-primary {
+    @include button-variant(white, $theme-primary, $theme-primary);
+}
+
+.btn-primary.disabled {
+    @include button-variant(white, $theme-primary, $theme-primary);
+}
+
+.btn {
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 300px;
+    @include sans-serif-font;
+}
+
+.btn-xl {
+    padding: 15px 30px;
+}
+
+#mainNav.navbar-shrink .navbar-brand{
+    color:#000;
+}
+#services h3{
+    margin-top:1rem;
+}
+
+
+
+/*******************************************************
+ *    FOOTER
+ */
+footer {
+    background-color:#222;
+    padding:25px 0;
+    font-family: Muli, Helvetica, Arial, sans-serif;
+}
+footer, footer ul li a {
+    color:rgba(255,255,255,.3);
+}
+footer, section.contact {
+    text-align:center;
+}
+footer ul, section.contact ul.list-social {
+    margin-bottom:0;
+}
+footer p {
+    margin:0;
+}
+footer p, footer ul li a {
+    font-size:12px;
+}
+footer .list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+footer .list-inline > li {
+    display:inline-block;
+    padding-right:5px;
+    padding-left:5px;
+}

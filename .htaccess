@@ -1,0 +1,24 @@
+# Disable the server signature 
+ServerSignature Off
+
+# Block access to multiple file types
+<IfModule mod_authz_core.c>
+ <FilesMatch "\.(htaccess|htpasswd|ini|log|sh)$">
+  <RequireAll>
+   Require all denied
+  </RequireAll>
+ </FilesMatch>
+</IfModule>
+
+<Files "gulpfile.js">
+Order Allow,Deny
+Deny from all
+</Files>
+<Files "package.json">
+Order Allow,Deny
+Deny from all
+</files>
+<Files "composer.*">
+Order Allow,Deny
+Deny from all
+</files>

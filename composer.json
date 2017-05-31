@@ -1,0 +1,8 @@
+{
+
+    "require": {
+        "phpmailer/phpmailer": "^5.2",
+        "soundasleep/html2text": "^0.5.0",
+        "buuum/s3": "^0.0.9"
+    }
+}

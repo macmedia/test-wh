@@ -1,0 +1,124 @@
+// Base Colors
+// Color from _variables.scss
+
+
+// Range Slider
+$range-width: 100% !default;
+
+$range-handle-color:        $gray-base;
+$range-handle-color-border: $gray;
+$range-handle-color-hover:  darken($range-handle-color, 10%);
+$range-handle-size:         20px;
+
+$range-track-color:         $gray-lighter;
+$range-track-border:        lighten($gray-light, 30%);
+$range-track-height:        10px;
+
+$range-label-color:         $theme-primary;
+$range-label-width:         120px;
+
+.range-slider {
+  margin: 10px 0 0 0%;
+  width: $range-width;
+
+  .btn {
+    background-color: lighten($range-label-color, 5%);
+    color: $range-label-color;
+    cursor: pointer;
+  }
+}
+
+
+.range-slider__range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: $range-track-color;
+  border: 1px solid $range-track-border;
+  border-radius: 5px;
+  height: $range-track-height;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: calc(100% - (#{$range-label-width + 10px}));
+
+
+
+  // Range Handle
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: $range-handle-color;
+    border: 1px solid $range-handle-color-border;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px $range-track-border;
+    cursor: pointer;
+    height: $range-handle-size;
+    transition: background .15s ease-in-out;
+    width: $range-handle-size;
+
+    &:hover {
+      background: $range-handle-color-hover;
+    }
+  }
+
+  &:active::-webkit-slider-thumb {
+    background: darken($range-handle-color-hover, 10%);
+  }
+
+  &::-moz-range-thumb {
+    background: $range-handle-color;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    height: $range-handle-size;
+    transition: background .15s ease-in-out;
+    width: $range-handle-size;
+
+    &:hover {
+      background: $range-handle-color-hover;
+    }
+  }
+
+  &:active::-moz-range-thumb {
+    background: $range-handle-color-hover;
+  }
+}
+
+// Range Label
+.range-slider__label {
+  background: $range-label-color;
+  border-radius: 3px;
+  color: lighten($range-label-color, 70%);
+  display: inline-block;
+  line-height: 20px;
+  margin-left: 8px;
+  padding: 5px 10px;
+  position: relative;
+  text-align: center;
+  top: -12px;
+  width: $range-label-width;
+
+  &::after {
+    border-bottom: 7px solid transparent;
+    border-right: 7px solid $range-label-color;
+    border-top: 7px solid transparent;
+    content: '';
+    height: 0;
+    left: -7px;
+    position: absolute;
+    top: 10px;
+    width: 0;
+  }
+}
+
+
+// Firefox Overrides
+::-moz-range-track {
+  background: $range-track-color;
+  border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+  border: 0;
+}

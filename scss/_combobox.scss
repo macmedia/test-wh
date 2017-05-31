@@ -1,0 +1,94 @@
+
+$success: #468847 !default;
+$warning: #c09853 !default;
+$white: #fff !default;
+$black: #000 !default;
+$border-color: #d9d9d9 !default;
+
+$dropdown-toggle-width: 38px;
+
+
+
+.form-search .combobox-container,
+.form-inline .combobox-container {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: top;
+
+  .input-group-addon {
+    width: $dropdown-toggle-width;
+  }
+}
+
+
+
+.combobox-selected .caret {
+  display: none;
+}
+
+// :not doesn't work in IE8
+.combobox-container:not(.combobox-selected) .fa-remove {
+  display: none;
+}
+
+.typeahead-long {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.control-group.error .combobox-container .add-on {
+  border-color: $theme-primary;
+  color: $theme-primary;
+}
+
+.control-group.error .combobox-container .caret {
+  border-top-color: $theme-primary;
+}
+
+.control-group.warning .combobox-container .add-on {
+  border-color: $warning;
+  color: $warning;
+}
+
+.control-group.warning .combobox-container .caret {
+  border-top-color: $warning;
+}
+
+.control-group.success .combobox-container .add-on {
+  border-color: $success;
+  color: $success;
+}
+
+.control-group.success .combobox-container .caret {
+  border-top-color: $success;
+}
+
+
+
+.dropdown-toggle.no-icon::after {
+  border: 0;
+}
+
+.no-focus {
+  outline: none;
+  padding: 5px 10px;
+}
+
+.typeahead.dropdown-menu {
+  box-shadow: lighten($black, 50%) 0 2px 10px;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: $theme-primary;
+  color: $white;
+  text-decoration: none;
+}
+
+.combobox-container input {
+  border: 1px solid $border-color;
+  border-bottom-left-radius: .25rem;
+  border-top-left-radius: .25rem;
+  padding: 6px 34px 6px 20px;
+  width: calc(100% - #{$dropdown-toggle-width + 4px});
+}
