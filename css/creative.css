@@ -543,17 +543,21 @@ input::-moz-focus-inner,
 input::-moz-focus-outer {
   border: 0; }
 
-.inputDnD .form-control-file {
+.inputDnD .box {
+  border: 0.25em dashed #f05f40;
   position: relative;
-  width: 100%;
+  top: .5em; }
+
+.inputDnD .form-control-file {
+  box-shadow: 0 0 5px #f05f40;
+  cursor: pointer;
   height: 100%;
   min-height: 6em;
   outline: none;
+  position: relative;
   visibility: hidden;
-  cursor: pointer;
-  background-color: #c61c23;
-  box-shadow: 0 0 5px solid currentColor; }
-  .inputDnD .form-control-file:before {
+  width: 100%; }
+  .inputDnD .form-control-file::before {
     content: attr(data-title);
     position: absolute;
     top: 0.5em;
@@ -565,12 +569,12 @@ input::-moz-focus-outer {
     opacity: 1;
     visibility: visible;
     text-align: center;
-    border: 0.25em dashed currentColor;
+    border: 0.25em dashed #f05f40;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: hidden; }
   .inputDnD .form-control-file:hover:before {
     border-style: solid;
-    box-shadow: inset 0px 0px 0px 0.25em currentColor; }
+    box-shadow: inset 0px 0px 0px 0.25em #f05f40; }
 
 .text-primary {
   color: #f05f40 !important; }

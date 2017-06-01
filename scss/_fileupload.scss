@@ -1,15 +1,22 @@
 .inputDnD {
-  .form-control-file {
+
+  .box {
+    border: .25em dashed $theme-primary;
     position: relative;
-    width: 100%;
+    top: .5em;
+  }
+
+  .form-control-file {
+    box-shadow: 0 0 5px $theme-primary;
+    cursor: pointer;
     height: 100%;
     min-height: 6em;
     outline: none;
+    position: relative;
     visibility: hidden;
-    cursor: pointer;
-    background-color: #c61c23;
-    box-shadow: 0 0 5px solid currentColor;
-    &:before {
+    width: 100%;
+
+    &::before {
       content: attr(data-title);
       position: absolute;
       top: 0.5em;
@@ -21,14 +28,14 @@
       opacity: 1;
       visibility: visible;
       text-align: center;
-      border: 0.25em dashed currentColor;
+      border: 0.25em dashed $theme-primary;
       transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
       overflow: hidden;
     }
     &:hover {
       &:before {
         border-style: solid;
-        box-shadow: inset 0px 0px 0px 0.25em currentColor;
+        box-shadow: inset 0px 0px 0px 0.25em $theme-primary;
       }
     }
   }

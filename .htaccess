@@ -2,6 +2,10 @@
 RewriteEngine on
 RewriteBase /
 
+#RewriteCond %{REQUEST_URI} !^/maintenance-mode.html$
+#RewriteCond %{REQUEST_URI} !\.(gif|jpe?g|png|css|js)$
+#RewriteRule .* /maintenance-mode.html [L,R=302]
+
 # inherit rules from httpd.conf
 RewriteOptions Inherit
 
