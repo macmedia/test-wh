@@ -111,10 +111,9 @@ $mail->Username = $SES_USER;                                      // SMTP userna
 $mail->Password = $SES_PASS;                                      // SMTP password
 $mail->Port = 587;                                                // TCP port to connect to
 
-$mail->setFrom($SES_FROM, $SES_NAME);                             // From address
-$mail->addAddress($email, $name);                                 // Add a recipient
+$mail->setFrom($SES_FROM_ADDR, $SES_FROM_NAME);                   // From address
+$mail->addAddress($SES_TO_ADDR, $SES_TO_NAME);                    // Add a recipient
 $mail->MsgHTML($body);                                            // Attach template
-//$mail->addAttachment('/tmp/AlTest1.err');                         // Add attachments
 
 $mail->Subject = "Request for new quote [$quote_number]";          // Set the subject
 
