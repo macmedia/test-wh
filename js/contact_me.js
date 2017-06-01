@@ -41,7 +41,7 @@ $(function() {
 
       // Reset the file upload
       formdata = new FormData();
-      $('#inputFile').attr('data-title', 'Drag and drop a file')
+      $('.box').attr('data-title', 'Drag and drop a file')
       $('.btn.upload').html('send').removeClass('disabled')
     };
 

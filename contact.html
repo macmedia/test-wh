@@ -182,7 +182,7 @@
                                 <div class="col-md-12">
                                   <button style="border-radius:3px;" type="button" class="btn btn-primary btn-block" onclick="document.getElementById('inputFile').click()">Add Image</button>
                                   <div class="form-group inputDnD">
-                                    <div class="box">
+                                    <div class="box" data-title="Drag and drop a file">
                                     <label class="sr-only" for="inputFile">File Upload</label>
                                     <input type="file" class="form-control-file text-primary font-weight-bold" id="inputFile" accept="application/postscript,image/*" onchange="readUrl(this)" data-title="Drag and drop a file">
                                     </div>
@@ -302,8 +302,9 @@
           reader.onloadend = (e) => {
             let imgData = e.target.result;
             let imgName = input.files[0].name;
+            let box = $('.box').attr('data-title', imgName);
 
-            input.setAttribute("data-title", imgName);
+            //input.setAttribute("data-title", imgName);
           }
 
           if (checkFileSizeLimit(input.files[0].size) ) {
