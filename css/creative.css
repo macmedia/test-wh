@@ -569,7 +569,6 @@ input::-moz-focus-outer {
     opacity: 1;
     visibility: visible;
     text-align: center;
-    border: 0.25em dashed #f05f40;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: hidden; }
   .inputDnD .form-control-file:hover:before {
