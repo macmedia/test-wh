@@ -7,10 +7,10 @@ require_once __DIR__ . "/../vendor/buuum/s3/src/S3/S3.php";
 
 
 // Setup phpmailer
-$mail = new PHPMailer;
-$quote_random = mt_rand(100000, 999999);
-$quote_number =  "ETCH-Q-$quote_random";
-$quote_sha = sha1(mt_rand(1, 9999) . uniqid()) . time();
+$mail           = new PHPMailer;
+$quote_random   = mt_rand(100000, 999999);
+$quote_number   = "ETCH-Q-$quote_random";
+$quote_sha      = sha1(mt_rand(1, 9999) . uniqid()) . time();
 $quote_filename = "$quote_random-$quote_sha";
 
 // Check of a POST has a valid CSRF Token.
@@ -24,11 +24,12 @@ if ( session_status() == PHP_SESSION_ACTIVE ){
 // Setup file upload
 if (!empty($_FILES['files'])) {
 
-  $tmp_name = $_FILES['files']['tmp_name'][0];
-  $artwork_name = $_FILES['files']['name'][0];
-  $artwork_mime = $_FILES['files']['type'][0];
-  $artwork_size = round($_FILES['files']['size'][0] / 1000, 1);
+  $tmp_name          = $_FILES['files']['tmp_name'][0];
+  $artwork_name      = $_FILES['files']['name'][0];
+  $artwork_mime      = $_FILES['files']['type'][0];
+  $artwork_size      = round($_FILES['files']['size'][0] / 1000, 1);
   $artwork_size_type = "KB";
+
   if( $artwork_size > 1000 ) {
     $artwork_size = round($artwork_size / 1000, 1);
     $artwork_size_type = "MB";
@@ -63,11 +64,11 @@ if(empty($_POST['name'])      ||
    }
 
 // Get the passed in POST data from ajax call contact_me.js
-$name = strip_tags(htmlspecialchars($_POST['name']));
-$email = strip_tags(htmlspecialchars($_POST['email']));
-$phone = strip_tags(htmlspecialchars($_POST['phone']));
-$message = strip_tags(htmlspecialchars($_POST['message']));
-$procurement = strip_tags(htmlspecialchars($_POST['procurement']));
+$name         = strip_tags(htmlspecialchars($_POST['name']));
+$email        = strip_tags(htmlspecialchars($_POST['email']));
+$phone        = strip_tags(htmlspecialchars($_POST['phone']));
+$message      = strip_tags(htmlspecialchars($_POST['message']));
+$procurement  = strip_tags(htmlspecialchars($_POST['procurement']));
 $project_size = strip_tags(htmlspecialchars($_POST['project_size']));
 $product_type = strip_tags(htmlspecialchars($_POST['product_type']));
 
@@ -81,20 +82,19 @@ if (!$body = file_get_contents(__DIR__ .'/templates/NewQuote.html') ){
 list($firstname, $lastname) = explode(' ', $name,2);
 $artwork_status = ( isset($artwork_url) ) ? $artwork_url : "N/A";
 
-
 // Reformat Phone Number +1800555555 | 8005555555 | +1(800)555-5555 | +1.800.555.5555 > (800) 555-5555
 $phone = preg_replace('/^[\+]?[\d]?[\D]*(\d{3})\D*\s?(\d{3})\D*\s?(\d{4})[\S\s]*$/', '($1) $2-$3', $phone);
 
 // Swap the placeholders in the template file with variables
 $template_vars = [
-    '%name%' => $name,
-    '%email%' => $email,
-    '%phone%' => $phone,
-    '%message%' => $message,
-    '%procurement%' => $procurement,
-    '%quote_number%' => $quote_number,
-    '%project_size%' => $project_size,
-    '%product_type%' => $product_type,
+    '%name%'           => $name,
+    '%email%'          => $email,
+    '%phone%'          => $phone,
+    '%message%'        => $message,
+    '%procurement%'    => $procurement,
+    '%quote_number%'   => $quote_number,
+    '%project_size%'   => $project_size,
+    '%product_type%'   => $product_type,
     '%artwork_status%' => $artwork_status
 ];
 $body = str_replace(array_keys($template_vars), $template_vars, $body);
@@ -105,11 +105,12 @@ $body = str_replace(array_keys($template_vars), $template_vars, $body);
 
 $mail->isSMTP();                                                  // Set email format to HTML
 $mail->isHTML(true);                                              // Set mailer to use SMTP
-$mail->Host = $SES_HOST;                                          // Specify main and backup SMTP servers
+
+$mail->Host     = $SES_HOST;                                      // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                                           // Use Auth
 $mail->Username = $SES_USER;                                      // SMTP username
 $mail->Password = $SES_PASS;                                      // SMTP password
-$mail->Port = 587;                                                // TCP port to connect to
+$mail->Port     = 587;                                            // TCP port to connect to
 
 $mail->setFrom($SES_FROM_ADDR, $SES_FROM_NAME);                   // From address
 $mail->addAddress($SES_TO_ADDR, $SES_TO_NAME);                    // Add a recipient
@@ -121,7 +122,7 @@ $mail->Subject = "Request for new quote [$quote_number]";          // Set the su
 $mail->AltBody = convert_html_to_text($body);
 
 if(!$mail->send()) {
-  echo json_encode(["code"=>"500","msg" => "Mailer Error! ". $mail->ErrorInfo ]);;
+  echo json_encode(["code"=>"500","msg" => "Mailer Error! ". $mail->ErrorInfo ]);
   return 0;
 } else {
   echo json_encode(["code"=>"200","msg" => "Thank you ". $firstname .". Your message has been sent."]);
